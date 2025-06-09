@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>سایت درد و دل</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #d0e7ff);
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #welcome {
+      background-color: #0077cc;
+      color: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      text-align: center;
+      max-width: 400px;
+      user-select: none;
+    }
+
+    #welcome h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+
+    #welcome button {
+      background-color: #00bfff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #welcome button:hover {
+      background-color: #0099cc;
+    }
+
+    #main-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 700px;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+    }
+
+    .fish-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .fish-row img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .fish-row img:hover {
+      transform: scale(1.2) rotate(10deg);
+      cursor: pointer;
+    }
+
+    header h1 {
+      margin: 5px 0 20px;
+      color: #0077cc;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 160px;
+      padding: 15px 20px;
+      font-size: 1.1rem;
+      border-radius: 15px;
+      border: 2px solid #0077cc;
+      resize: vertical;
+      font-family: inherit;
+      color: #222;
+      box-shadow: inset 0 3px 7px #dbe9ff;
+      transition: border-color 0.3s ease;
+    }
+
+    textarea::placeholder {
+      color: #999;
+      font-weight: 600;
+    }
+
+    textarea:focus {
+      border-color: #004a99;
+      outline: none;
+      box-shadow: 0 0 8px #005fccaa;
+    }
+
+    button#submitBtn {
+      margin-top: 15px;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background-color: #0077cc;
+      border: none;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button#submitBtn:hover {
+      background-color: #005fa3;
+    }
+
+    .below-textarea {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+
+    .below-textarea img {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+
+    .below-textarea p {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #e63946;
+      user-select: none;
+    }
+
+    #message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #e63946;
+      color: white;
+      font-size: 3rem;
+      font-weight: 900;
+      padding: 50px 80px;
+      border-radius: 25px;
+      box-shadow: 0 0 20px #e63946cc;
+      z-index: 9999;
+      user-select: none;
+      text-align: center;
+    }
+
+    .side-image {
+      position: fixed;
+      bottom: 20px;
+      left: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .side-image img {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      object-fit: cover;
+    }
+
+    .side-image p {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #444;
+      background: rgba(255,255,255,0.6);
+      padding: 4px 8px;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      #welcome {
+        max-width: 90vw;
+        padding: 30px 20px;
+      }
+      .fish-row img {
+        width: 45px;
+        height: 45px;
+      }
+      .below-textarea img {
+        width: 90px;
+        height: 90px;
+      }
+      .below-textarea p {
+        font-size: 1.1rem;
+      }
+      #message {
+        font-size: 2.2rem;
+        padding: 30px 50px;
+      }
+      .side-image {
+        bottom: 15px;
+        left: 10px;
+      }
+      .side-image img {
+        width: 75px;
+        height: 75px;
+      }
+      .side-image p {
+        font-size: 1rem;
+        padding: 3px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- صفحه خوش آمدگویی -->
+  <div id="welcome">
+    <h2>خوش آمدی به سایت درد و دل</h2>
+    <button id="enterBtn">تایید</button>
+  </div>
+
+  <!-- صفحه اصلی -->
+  <div id="main-content">
+    <header>
+      <div class="fish-row">
+        <img src="https://mettod.ir/wp-content/uploads/2021/12/goldfish-png-098.jpg" alt="ماهی طلایی" />
+        <img src="https://mettod.ir/wp-content/uploads/2021/12/goldfish-png-098.jpg" alt="ماهی طلایی" />
+        <img src="https://mettod.ir/wp-content/uploads/2021/12/goldfish-png-098.jpg" alt="ماهی طلایی" />
+        <img src="https://mettod.ir/wp-content/uploads/2021/12/goldfish-png-098.jpg" alt="ماهی طلایی" />
+      </div>
+      <h1>ماهیییی</h1>
+    </header>
+
+    <textarea id="textInput" placeholder="درد و دل کن"></textarea>
+    <button id="submitBtn">تایید</button>
+
+    <div class="below-textarea">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQPPh4PLgvaZU_4PvrvP-FkZemUs5eVyRub0ep9zY10o07juU3hn1mlLielF6Etrrzfhs&usqp=CAU" alt="تصویر زیر جدول" />
+      <p>کص عمت</p>
+    </div>
+  </div>
+
+  <!-- عکس کنار صفحه -->
+  <div class="side-image">
+    <img src="https://dkstatics-public.digikala.com/digikala-products/e336e0a57c2454cf60877850412c5862aa720449_1626682932.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="ن.ج.م" />
+    <p>ن.ج.م</p>
+  </div>
+
+  <!-- پیام بکیرم -->
+  <div id="message">بکیرم</div>
+
+  <script>
+    const enterBtn = document.getElementById('enterBtn');
+    const welcomeDiv = document.getElementById('welcome');
+    const mainContent = document.getElementById('main-content');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('message');
+    const textInput = document.getElementById('textInput');
+
+    enterBtn.addEventListener('click', () => {
+      welcomeDiv.style.display = 'none';
+      mainContent.style.display = 'flex';
+    });
+
+    submitBtn.addEventListener('click', () => {
+      if (textInput.value.trim() === '') {
+        alert('لطفا چیزی بنویس!');
+        textInput.focus();
+        return;
+      }
+
+      messageDiv.style.display = 'block';
+      setTimeout(() => {
+        messageDiv.style.display = 'none';
+        textInput.value = '';
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
